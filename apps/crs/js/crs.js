@@ -1,9 +1,9 @@
-require(['jquery'], function($) {
+require(['jquery'], function ($) {
   var jsonBase      = wity_base_url + 'm/crs/json',
-      refreshTimer  = 1,
+      refreshTimer  = 1, // In seconds
       $crs_app      = $('.wity-app-crs.wity-app-crs-index'),
       $heroes_list  = $crs_app.find('ul.heroes-list'),
-      $players_list = $crs_app.find('ul.players-list'), // In seconds
+      $players_list = $crs_app.find('ul.players-list'),
       $safari_timer = $crs_app.find('div.safari-timer');
 
   function refreshContent() {
@@ -25,7 +25,7 @@ require(['jquery'], function($) {
 
       $players_list.empty();
 
-      players.forEach(function(player) {
+      players.forEach(function (player) {
         $player = $('<li>').addClass('player-' + i).text(player.name + ' : ' + player.kills);
 
         $players_list.append($player);
@@ -35,7 +35,7 @@ require(['jquery'], function($) {
 
       // Refresh safari timer
       var options = result.options;
-      if('timer' in options) {
+      if ('timer' in options) {
         var timer = options.timer;
 
         $safari_timer
@@ -46,7 +46,7 @@ require(['jquery'], function($) {
   }
 
   // When the DOM is ready
-  $(function() {
+  $(function () {
     refreshContent();
 
     setInterval(refreshContent, refreshTimer * 1000);
