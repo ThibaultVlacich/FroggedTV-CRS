@@ -8,6 +8,10 @@ require(['jquery'], function ($) {
 
   function refreshContent() {
     $.getJSON(jsonBase, function (json) {
+      if (!('result' in json)) {
+        return;
+      }
+
       var result = json.result;
 
       // Display the target on the correct hero
@@ -15,32 +19,36 @@ require(['jquery'], function ($) {
         .find('li')
         .removeClass('target');
 
-      $heroes_list
-        .find('li:nth-child(' + result.target + ')')
-        .addClass('target');
+      if ('target' in result) {
+        $heroes_list
+          .find('li:nth-child(' + result.target + ')')
+          .addClass('target');
+      }
 
       // Refresh target kill count
-      var players = result.players,
-                i = 1;
-
       $players_list.empty();
 
-      players.forEach(function (player) {
-        $player = $('<li>').addClass('player-' + i).text(player.name + ' : ' + player.kills);
+      if ('players' in result) {
+        var players = result.players;
 
-        $players_list.append($player);
+        $.each(players, function (index, player) {
+          var $player = $('<li>').addClass('player-' + (index + 1)).text(player.name + ' : ' + player.kills);
 
-        i++;
-      });
+          $players_list.append($player);
+        });
+      }
 
       // Refresh safari timer
-      var options = result.options;
-      if ('timer' in options) {
-        var timer = options.timer;
+      if ('options' in result) {
+        var options = result.options;
 
-        $safari_timer
-          .css('top', (parseInt($players_list.css('top'), 10) + parseInt($players_list.css('height'), 10) + 10) + 'px')
-          .text('Safari : ' + timer);
+        if ('timer' in options) {
+          var timer = options.timer;
+
+          $safari_timer
+            .css('top', (parseInt($players_list.css('top'), 10) + parseInt($players_list.css('height'), 10) + 10) + 'px')
+            .text('Safari : ' + timer);
+        }
       }
     });
   }
