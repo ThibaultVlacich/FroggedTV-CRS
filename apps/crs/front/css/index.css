@@ -1,0 +1,64 @@
+.wity-app-crs.wity-app-crs-index {
+	width: 1920px;
+	height: 1080px;
+	position: relative;
+}
+
+.wity-app-crs.wity-app-crs-index ul.heroes-list {
+	list-style: none;
+	width: 868px;
+	height: 45px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.wity-app-crs.wity-app-crs-index ul.heroes-list li {
+	width: 64px;
+	height: 45px;
+	margin-left: 2px;
+	float: left;
+}
+
+.wity-app-crs.wity-app-crs-index ul.heroes-list li.target {
+	background-image: url('../images/target.png');
+}
+
+.wity-app-crs.wity-app-crs-index ul.heroes-list li:nth-child(6) {
+	margin-left: 208px;
+}
+
+.wity-app-crs.wity-app-crs-index ul.heroes-list li:nth-child(10) {
+	margin-right: 2px;
+}
+
+.wity-app-crs.wity-app-crs-index ul.heroes-list::after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+.wity-app-crs.wity-app-crs-index ul.players-list {
+	list-style: none;
+	position: absolute;
+	top: 350px;
+	right: 10px;
+	margin: 0;
+	padding: 0;
+}
+
+.wity-app-crs.wity-app-crs-index ul.players-list li {
+	color: white;
+	font-size: 25px;
+	text-align: right;
+	text-shadow: black 0px 0px 5px;
+}
+
+.wity-app-crs.wity-app-crs-index div.safari-timer {
+	position: absolute;
+	top: 510px;
+	right: 10px;
+	color: white;
+	font-size: 25px;
+	text-align: right;
+	text-shadow: black 0px 0px 5px;
+}
