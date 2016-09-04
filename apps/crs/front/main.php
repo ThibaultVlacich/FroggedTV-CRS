@@ -14,10 +14,6 @@ defined('WITYCMS_VERSION') or die('Access denied');
  */
 class CrsController extends WController {
 	protected function index() {
-
-	}
-
-	protected function json() {
 		return $this->model->getJSON();
 	}
 }

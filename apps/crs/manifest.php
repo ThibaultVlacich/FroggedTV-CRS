@@ -10,5 +10,9 @@
 	<date>03-09-2016</date>
 
 	<action default="default">index</action>
-	<action>json</action>
+
+	<!-- Admin actions -->
+	<admin>
+		<action default="default">index</action>
+	</admin>
 </app>
