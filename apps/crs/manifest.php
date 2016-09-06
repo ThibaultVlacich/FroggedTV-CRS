@@ -9,7 +9,7 @@
 	<!-- Last update date -->
 	<date>03-09-2016</date>
 
-	<action default="default">index</action>
+	<action default="default">overlay</action>
 
 	<!-- Admin actions -->
 	<admin>

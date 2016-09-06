@@ -2,7 +2,7 @@ require(['jquery'], function ($) {
   var firstLoading  = true,
       jsonBase      = wity_base_url + 'm/crs',
       refreshTimer  = 1, // In seconds
-      $crs_app      = $('.wity-app-crs.wity-app-crs-index'),
+      $crs_app      = $('.wity-app-crs.wity-app-crs-overlay'),
       $heroes_list  = $crs_app.find('ul.heroes-list'),
       $players_list = $crs_app.find('ul.players-list'),
       $safari_timer = $crs_app.find('div.safari-timer');
@@ -76,8 +76,39 @@ require(['jquery'], function ($) {
     }
   }
 
+  function animateLinks() {
+    var $links_container = $crs_app.find('ul.links'),
+        $links           = $links_container.find('li');
+
+    $links_container.find('li:nth-child(1)').addClass('visible');
+
+    setTimeout(function () {
+        $links_container.find('li:nth-child(1)').removeClass('visible');
+
+        setTimeout(function () {
+            $links_container.find('li:nth-child(2)').addClass('visible');
+
+            setTimeout(function () {
+                $links_container.find('li:nth-child(2)').removeClass('visible');
+
+                setTimeout(function () {
+                    $links_container.find('li:nth-child(3)').addClass('visible');
+
+                    setTimeout(function () {
+                        $links_container.find('li:nth-child(3)').removeClass('visible');
+
+                        setTimeout(animateLinks, 1 * 1000);
+                    }, 10 * 1000);
+                }, 1 * 1000);
+            }, 10 * 1000);
+        }, 1 * 1000);
+    }, 10 * 1000);
+  }
+
   // When the DOM is ready
   $(function () {
     setInterval(refreshContent, refreshTimer * 1000);
+
+    animateLinks();
   });
 });
