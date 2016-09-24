@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lang value="FR">
+  <item id="Game not found">Cette partie n'existe pas</item>
+  <item id="The game has been created successfully.">La partie a été créé avec succès</item>
+  <item id="Manage a game">Gérer une partie</item>
+  <item id="Players">Joueurs</item>
+  <item id="Safari timer">Durée de safari</item>
+  <item id="Start">Démarrer</item>
+  <item id="End">Arrêter</item>
+  <item id="Add a game">Ajouter une partie</item>
+  <item id="Side">Equipe</item>
+  <item id="Target">Cible</item>
+  <item id="Player %s name">Nom du joueur %s</item>
+  <item id="Submit">Envoyer</item>
+  <item id="Games">Parties</item>
+  <item id="Match date">Date de la partie</item>
+  <item id="Edit">Modifier</item>
+  <item id="Delete">Supprimer</item>
+  <item id="No games in database.">Aucune partie en base de donnée</item>
+</lang>

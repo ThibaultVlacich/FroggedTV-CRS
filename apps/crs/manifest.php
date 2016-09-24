@@ -13,6 +13,10 @@
 
 	<!-- Admin actions -->
 	<admin>
-		<action default="default">index</action>
+		<action default="default" description="Games list">games</action>
+        <action menu="false">game</action>
+        <action description="Add a game" menu="false">game_add</action>
+		<action menu="false">increment_timer</action>
+        <action menu="false">kill_count</action>
 	</admin>
 </app>

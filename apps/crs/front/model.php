@@ -27,6 +27,74 @@ class CrsModel {
 		$this->db->declareTable('crs_players');
 	}
 
+    public function getGames() {
+		$prep = $this->db->prepare("
+			SELECT id FROM crs_games ORDER BY created_date DESC
+		");
+
+		$prep->execute();
+
+		$games = array();
+
+		while (list($id_game) = $prep->fetch()) {
+			$game = $this->getGame($id_game);
+
+			array_push($games, $game);
+		}
+
+		return $games;
+	}
+
+	public function getGame($id_game) {
+		$prep = $this->db->prepare("
+			SELECT target, created_date FROM crs_games WHERE id = :id_game
+		");
+
+		$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
+		$prep->execute();
+
+        if (!($fetch = $prep->fetch())) {
+            return false;
+        }
+
+		list($target, $create_date) = $fetch;
+
+		$prep = $this->db->prepare("
+			SELECT id, name, kills FROM crs_players WHERE id_game = :id_game
+		");
+
+		$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
+		$prep->execute();
+
+		$players = $prep->fetchAll(PDO::FETCH_ASSOC);
+
+		return array(
+			'id'           => $id_game,
+			'target'       => $target,
+			'players'      => $players,
+            'created_date' => new WDate($create_date)
+		);
+	}
+
+    /**
+     * Select global options
+     */
+    public function getOptions() {
+		$options_prep = $this->db->prepare('
+			SELECT name, value FROM crs_options
+		');
+
+		$options_prep->execute();
+
+		$options = array();
+
+		while($option = $options_prep->fetch(PDO::FETCH_ASSOC)) {
+			$options[$option['name']] = $option['value'];
+		}
+
+        return $options;
+    }
+
 	public function getJSON() {
 		/**
 		 * Select the latest game in Database
@@ -52,25 +120,11 @@ class CrsModel {
 
 		$players = $players_prep->fetchAll(PDO::FETCH_ASSOC);
 
-		/**
-		 * Select global options
-		 */
-		$options_prep = $this->db->prepare('
-			SELECT name, value FROM crs_options
-		');
-
-		$options_prep->execute();
-
-		$options = array();
-		while($option = $options_prep->fetch(PDO::FETCH_ASSOC)) {
-			$options[$option['name']] = $option['value'];
-		}
-
 		return array(
 			'id_game' => $id_game,
 			'target'  => $target,
 			'players' => $players,
-			'options' => $options
+			'options' => $this->getOptions()
 		);
 	}
 }

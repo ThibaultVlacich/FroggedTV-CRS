@@ -1,0 +1,37 @@
+<div class="wity-app wity-app-crs wity-action-game">
+	<form action="/admin/crs/game" method="post" class="form-horizontal">
+		<h1>{lang Manage a game}</h1>
+
+        <fieldset>
+            <legend>{lang Players}</legend>
+
+            {for $player in $players}
+    		<div class="form-group" data-player-id="{$player.id}">
+    			<label class="col-sm-2 control-label">{$player.name}</label>
+    			<div class="col-sm-10 col-lg-1">
+    				<input class="form-control kills" type="text" name="players[{$player.id}][kills]" value="{$player.kills}">
+    			</div>
+                <div class="col-lg-9">
+                    <button type="button" class="btn btn-default add"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button type="button" class="btn btn-default minus"><i class="glyphicon glyphicon-minus"></i></button>
+                </div>
+    		</div>
+            {/for}
+        </fieldset>
+
+        <fieldset>
+            <legend>{lang Safari}</legend>
+
+            <div class="form-group" data-player-id="{$player.id}">
+                <label for="code" class="col-sm-2 control-label">{lang Safari timer}</label>
+                <div class="col-sm-10 col-lg-2">
+                    <input class="form-control timer" type="text" name="timer" value="{$options.timer}">
+                </div>
+                <div class="col-lg-8">
+                    <button type="button" class="btn btn-success safari-start">{lang Start}</button>
+                    <button type="button" class="btn btn-danger safari-end" disabled="disabled">{lang End}</button>
+                </div>
+            </div>
+        </fieldset>
+	</form>
+</div>
