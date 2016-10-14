@@ -82,17 +82,25 @@ require(['jquery'], function ($) {
             numberOfLinks = $links.find('li').length;
 
         $links.find('li:eq(' + current_link + ')')
-              .animate({'opacity' : '1'}, 1000)
-              .animate({'opacity' : '1'}, 10000)
-              .animate({'opacity' : '0'}, 1000, function() {
-                    (current_link == numberOfLinks - 1) ? (current_link = 0) : (current_link += 1);
+              .animate({'opacity': '1'}, 1000)
+              .animate({'opacity': '1'}, 10000)
+              .animate({'opacity': '0'}, 1000, function() {
+                    current_link = (current_link == numberOfLinks - 1) ? 0 : current_link + 1;
                     animateLinks();
               });
+    }
+
+    function displayHostName() {
+        $crs_app.find('div.host')
+            .animate({'left': '-10px'}, 1000)
+            .animate({'opacity': '1'}, 5000)
+            .animate({'left': '-200px'}, 1000);
     }
 
     // When the DOM is ready
     $(function () {
         setInterval(refreshContent, refreshTimer * 1000);
+        setTimeout(displayHostName, 10 * 1000);
 
         animateLinks();
     });

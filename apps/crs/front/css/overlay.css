@@ -85,6 +85,20 @@
 	text-shadow: black 0px 0px 5px;
 }
 
+.wity-app-crs.wity-app-crs-overlay div.host {
+	position: absolute;
+	width: 200px;
+	height: 50px;
+	top: 700px;
+	left: -200px;
+	color: white;
+	background: rgba(0, 0, 0, 0.7);
+	line-height: 50px;
+	padding-left: 40px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
 .wity-app-crs.wity-app-crs-overlay ul.links {
 	width: 200px;
 	height: 65px;
