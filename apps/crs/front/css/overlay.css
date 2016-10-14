@@ -100,7 +100,6 @@
 }
 
 .wity-app-crs.wity-app-crs-overlay ul.links > li {
-	transition: opacity 1s ease-in-out;
 	opacity: 0;
 	position: absolute;
 	top: 0;
@@ -109,10 +108,6 @@
 	left: 0;
 	text-align: center;
 	line-height: 65px;
-}
-
-.wity-app-crs.wity-app-crs-overlay ul.links > li.visible {
-	opacity: 1;
 }
 
 .wity-app-crs.wity-app-crs-overlay ul.links > li > img {
