@@ -17,7 +17,8 @@ body {
 	font-family: -apple-system, 'Segoe UI', sans-serif;
 	font-size: 1em;
 	color: black;
-	background: #00ff00;
+	background: transparent;
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
 }
