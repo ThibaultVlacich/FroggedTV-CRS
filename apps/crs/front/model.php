@@ -23,14 +23,21 @@ class CrsModel {
 
 		// Declare tables
 		$this->db->declareTable('crs_games');
+		$this->db->declareTable('crs_heroes');
 		$this->db->declareTable('crs_options');
 		$this->db->declareTable('crs_players');
 	}
 
+	public function getHeroes()	{
+		$prep = $this->db->prepare("SELECT * FROM crs_heroes ORDER BY name ASC");
+
+		$prep->execute();
+
+		return $prep->fetchAll(PDO::FETCH_ASSOC);
+	}
+
     public function getGames() {
-		$prep = $this->db->prepare("
-			SELECT id FROM crs_games ORDER BY created_date DESC
-		");
+		$prep = $this->db->prepare("SELECT id FROM crs_games ORDER BY created_date DESC");
 
 		$prep->execute();
 
@@ -59,14 +66,23 @@ class CrsModel {
 
 		list($target, $create_date) = $fetch;
 
-		$prep = $this->db->prepare("
-			SELECT id, name, kills FROM crs_players WHERE id_game = :id_game
-		");
+		$prep = $this->db->prepare("SELECT id, name, id_hero, kills FROM crs_players WHERE id_game = :id_game");
 
 		$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
 		$prep->execute();
 
-		$players = $prep->fetchAll(PDO::FETCH_ASSOC);
+		$players = array();
+
+		while ($player = $prep->fetch(PDO::FETCH_ASSOC)) {
+			$heroPrep = $this->db->prepare("SELECT * FROM crs_heroes WHERE id = :id_hero");
+
+			$heroPrep->bindParam(':id_hero', $player['id_hero'], PDO::PARAM_INT);
+			$heroPrep->execute();
+
+			$player['hero'] = $heroPrep->fetch(PDO::FETCH_ASSOC);
+
+			$players[] = $player;
+		}
 
 		return array(
 			'id'           => $id_game,

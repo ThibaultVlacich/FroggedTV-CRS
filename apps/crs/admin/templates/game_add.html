@@ -3,8 +3,10 @@
 		<h1>{lang Add a game}</h1>
 
         <fieldset>
+			<legend>{lang General}</legend>
+
     		<div class="form-group">
-    			<label for="name" class="col-sm-2 control-label">{lang Side}*</label>
+    			<label for="side" class="col-sm-2 control-label">{lang Enemy's side} <span class="required">*</span></label>
     			<div class="col-sm-10 col-lg-5">
     				<select name="side" id="side" class="form-control">
     				    <option value="dire">{lang Dire}</option>
@@ -14,7 +16,7 @@
     		</div>
 
             <div class="form-group">
-    			<label for="target" class="col-sm-2 control-label">{lang Target}*</label>
+    			<label for="target" class="col-sm-2 control-label">{lang Target} <span class="required">*</span></label>
     			<div class="col-sm-10 col-lg-5">
     				<select name="target" id="target" class="form-control">
     				    <option value="1">1</option>
@@ -30,40 +32,26 @@
         <fieldset>
             <legend>{lang Players}</legend>
 
+			{for $i in array(1,2,3,4,5)}
     		<div class="form-group">
-    			<label for="code" class="col-sm-2 control-label">{lang Player %s name|1}*</label>
+    			<label for="player{$i}name" class="col-sm-2 control-label">{lang Player %s name|{$i}} <span class="required">*</span></label>
     			<div class="col-sm-10 col-lg-5">
-    				<input id="player1name" class="form-control lang" type="text" name="players[][name]" />
+    				<input id="player{$i}name" class="form-control lang" type="text" name="players[{$i}][name]" />
     			</div>
     		</div>
 
-            <div class="form-group">
-                <label for="code" class="col-sm-2 control-label">{lang Player %s name|2}*</label>
-                <div class="col-sm-10 col-lg-5">
-                    <input id="player2name" class="form-control lang" type="text" name="players[][name]" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="code" class="col-sm-2 control-label">{lang Player %s name|3}*</label>
-                <div class="col-sm-10 col-lg-5">
-                    <input id="player3name" class="form-control lang" type="text" name="players[][name]" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="code" class="col-sm-2 control-label">{lang Player %s name|4}*</label>
-                <div class="col-sm-10 col-lg-5">
-                    <input id="player4name" class="form-control lang" type="text" name="players[][name]" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="code" class="col-sm-2 control-label">{lang Player %s name|5}*</label>
-                <div class="col-sm-10 col-lg-5">
-                    <input id="player5name" class="form-control lang" type="text" name="players[][name]" />
-                </div>
-            </div>
+			<div class="form-group">
+				<label for="player{$i}hero" class="col-sm-2 control-label">{lang Player %s hero|{$i}} <span class="required">*</span></label>
+				<div class="col-sm-10 col-lg-5">
+					<select id="player{$i}hero" class="form-control" name="players[{$i}][hero]">
+						{for $hero in {$heroes}}
+						<option value="{$hero.id}">{$hero.name}</option>
+						{/for}
+					</select>
+				</div>
+			</div>
+			<hr>
+			{/for}
         </fieldset>
 
 		<div class="form-group">

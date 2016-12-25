@@ -7,6 +7,11 @@ a.black {
 	color: #333;
 }
 
+span.required {
+	font-weight: bold;
+	color: red;
+}
+
 .link {
 	cursor: pointer;
 }

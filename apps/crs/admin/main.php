@@ -49,7 +49,7 @@ class CrsAdminController extends WController {
                 $players = array();
 
                 foreach ($data['players'] as $index => $value) {
-                    $players[] = $value['name'];
+                    $players[] = array('name' => $value['name'], 'hero' => $value['hero']);
                 }
 
                 $id_game = $this->model->createGame($target, $players);
@@ -58,7 +58,11 @@ class CrsAdminController extends WController {
                 return WNote::success('game_created', WLang::get('The game has been created successfully.'));
             }
         }
-    }
+
+		return array(
+			'heroes' => $this->model->getHeroes()
+		);
+	}
 
     protected function kill_count(array $params) {
         $player_id = array_shift($params);

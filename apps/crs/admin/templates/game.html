@@ -7,7 +7,7 @@
 
             {for $player in $players}
     		<div class="form-group" data-player-id="{$player.id}">
-    			<label class="col-sm-2 control-label">{$player.name}</label>
+    			<label class="col-sm-2 control-label">{$player.name} ({$player.hero.name})</label>
     			<div class="col-sm-10 col-lg-1">
     				<input class="form-control kills" type="text" name="players[{$player.id}][kills]" value="{$player.kills}">
     			</div>

@@ -23,6 +23,10 @@ class CrsAdminView extends WView {
 
         $this->assign('require', 'apps!crs/game');
     }
+
+    public function game_add($model) {
+        $this->assign('heroes', $model['heroes']);
+    }
 }
 
 ?>

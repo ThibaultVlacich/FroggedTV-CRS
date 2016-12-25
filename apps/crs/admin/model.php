@@ -83,11 +83,12 @@ class CrsAdminModel extends CrsModel {
 		foreach ($players as $player) {
 			$prep = $this->db->prepare("
 				INSERT INTO crs_players
-					(id_game, name, kills) VALUES (:id_game, :name, '0')
+					(id_game, name, id_hero, kills) VALUES (:id_game, :name, :id_hero, 0)
 			");
 
 			$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
-			$prep->bindParam(':name', $player);
+			$prep->bindParam(':name', $player['name']);
+			$prep->bindParam(':id_hero', $player['hero']);
 
 			$prep->execute();
 		}
