@@ -115,26 +115,32 @@ class CrsModel {
 		/**
 		 * Select the latest game in Database
 		 */
-		$game_prep = $this->db->prepare('
-			SELECT id, target FROM crs_games ORDER BY created_date DESC LIMIT 1
-		');
+		$prep = $this->db->prepare('SELECT id, target FROM crs_games ORDER BY created_date DESC LIMIT 1');
 
-		$game_prep->execute();
+		$prep->execute();
 
-		list($id_game, $target) = $game_prep->fetch();
+		list($id_game, $target) = $prep->fetch();
 
 		/**
 		 * Select the players for this game
 		 */
-		$players_prep = $this->db->prepare('
-			SELECT name, kills FROM crs_players WHERE id_game = :id_game
-		');
+		$prep = $this->db->prepare('SELECT name, id_hero, kills FROM crs_players WHERE id_game = :id_game');
 
-		$players_prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
+		$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
+		$prep->execute();
 
-		$players_prep->execute();
+		$players = array();
 
-		$players = $players_prep->fetchAll(PDO::FETCH_ASSOC);
+		while ($player = $prep->fetch(PDO::FETCH_ASSOC)) {
+			$heroPrep = $this->db->prepare("SELECT * FROM crs_heroes WHERE id = :id_hero");
+
+			$heroPrep->bindParam(':id_hero', $player['id_hero'], PDO::PARAM_INT);
+			$heroPrep->execute();
+
+			$player['hero'] = $heroPrep->fetch(PDO::FETCH_ASSOC);
+
+			$players[] = $player;
+		}
 
 		return array(
 			'id_game' => $id_game,

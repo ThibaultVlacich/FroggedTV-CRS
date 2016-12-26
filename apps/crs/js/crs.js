@@ -56,6 +56,10 @@ require(['jquery'], function ($) {
             $.each(players, function (index, player) {
                 var $player = $('<li>').addClass('player-' + (index + 1)).text(player.name + ' : ' + player.kills);
 
+                if ('hero' in player && player.hero != false) {
+                    $player.prepend($('<i>').addClass('miniheroes-sprite miniheroes-sprite-'+player.hero.icon));
+                }
+
                 $players_list.append($player);
             });
         }
