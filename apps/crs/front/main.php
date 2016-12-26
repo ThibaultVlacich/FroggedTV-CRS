@@ -13,9 +13,11 @@ defined('WITYCMS_VERSION') or die('Access denied');
  * @version 1.0.0-03-09-2016
  */
 class CrsController extends WController {
+
 	protected function overlay() {
 		return $this->model->getJSON();
 	}
+
 }
 
 ?>

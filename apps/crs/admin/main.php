@@ -15,68 +15,68 @@ defined('WITYCMS_VERSION') or die('Access denied');
 class CrsAdminController extends WController {
 	protected function games() {
 		return array(
-            'games' => $this->model->getGames()
-        );
+			'games' => $this->model->getGames()
+		);
 	}
 
-    protected function game(array $params) {
-        $id_game = array_shift($params);
+	protected function game(array $params) {
+		$id_game = array_shift($params);
 
-        if (!($game = $this->model->getGame($id_game))) {
-            return WNote::error('game_not_found', WLang::get('Game not found'));
-        }
+		if (!($game = $this->model->getGame($id_game))) {
+			return WNote::error('game_not_found', WLang::get('Game not found'));
+		}
 
-        return array(
-            'game'    => $game,
-            'options' => $this->model->getOptions()
-        );
-    }
+		return array(
+			'game'    => $game,
+			'options' => $this->model->getOptions()
+		);
+	}
 
-    protected function game_add() {
-        if (WRequest::getMethod() == 'POST') {
-            $data = WRequest::getAssoc(array('side', 'target', 'players'), 'POST');
+	protected function game_add() {
+		if (WRequest::getMethod() == 'POST') {
+			$data = WRequest::getAssoc(array('side', 'target', 'players'), 'POST');
 
-            if (!in_array(null, $data)) {
-                switch ($data['side']) {
-                    case 'dire':
-                        $target = $data['target'] + 5;
-                        break;
-                    case 'radiant':
-                        $target = $data['target'];
-                        break;
-                }
+			if (!in_array(null, $data)) {
+				switch ($data['side']) {
+					case 'dire':
+					$target = $data['target'] + 5;
+					break;
+					case 'radiant':
+					$target = $data['target'];
+					break;
+				}
 
-                $players = array();
+				$players = array();
 
-                foreach ($data['players'] as $index => $value) {
-                    $players[] = array('name' => $value['name'], 'hero' => $value['hero']);
-                }
+				foreach ($data['players'] as $index => $value) {
+					$players[] = array('name' => $value['name'], 'hero' => $value['hero']);
+				}
 
-                $id_game = $this->model->createGame($target, $players);
+				$id_game = $this->model->createGame($target, $players);
 
-                $this->setHeader('Location', WRoute::getDir().'admin/crs/game/'.$id_game);
-                return WNote::success('game_created', WLang::get('The game has been created successfully.'));
-            }
-        }
+				$this->setHeader('Location', WRoute::getDir().'admin/crs/game/'.$id_game);
+				return WNote::success('game_created', WLang::get('The game has been created successfully.'));
+			}
+		}
 
 		return array(
 			'heroes' => $this->model->getHeroes()
 		);
 	}
 
-    protected function kill_count(array $params) {
-        $player_id = array_shift($params);
-        $action    = array_shift($params);
+	protected function kill_count(array $params) {
+		$player_id = array_shift($params);
+		$action    = array_shift($params);
 
-        switch ($action) {
-            case "increase":
-                $this->model->increase_kill_count($player_id);
-                break;
-            case "decrease":
-                $this->model->decrease_kill_count($player_id);
-                break;
-        }
-    }
+		switch ($action) {
+			case "increase":
+			$this->model->increase_kill_count($player_id);
+			break;
+			case "decrease":
+			$this->model->decrease_kill_count($player_id);
+			break;
+		}
+	}
 
 	protected function increment_timer() {
 		return array('timer' => $this->model->increment_timer());

@@ -22,30 +22,24 @@ class CrsAdminModel extends CrsModel {
 		parent::__construct();
 	}
 
-    public function increase_kill_count($player_id) {
-        $prep = $this->db->prepare("
-            UPDATE crs_players SET kills = kills + 1 WHERE id = :player_id
-        ");
+	public function increase_kill_count($player_id) {
+		$prep = $this->db->prepare("UPDATE crs_players SET kills = kills + 1 WHERE id = :player_id");
 
-        $prep->bindParam(':player_id', $player_id, PDO::PARAM_INT);
+		$prep->bindParam(':player_id', $player_id, PDO::PARAM_INT);
 
-        $prep->execute();
-    }
+		$prep->execute();
+	}
 
-    public function decrease_kill_count($player_id) {
-        $prep = $this->db->prepare("
-            UPDATE crs_players SET kills = kills - 1 WHERE id = :player_id
-        ");
+	public function decrease_kill_count($player_id) {
+		$prep = $this->db->prepare("UPDATE crs_players SET kills = kills - 1 WHERE id = :player_id");
 
-        $prep->bindParam(':player_id', $player_id, PDO::PARAM_INT);
+		$prep->bindParam(':player_id', $player_id, PDO::PARAM_INT);
 
-        $prep->execute();
-    }
+		$prep->execute();
+	}
 
 	public function increment_timer() {
-		$prep = $this->db->prepare("
-			SELECT value FROM crs_options WHERE name = 'timer'
-		");
+		$prep = $this->db->prepare("SELECT value FROM crs_options WHERE name = 'timer'");
 
 		$prep->execute();
 
@@ -57,15 +51,13 @@ class CrsAdminModel extends CrsModel {
 
 		$new_timer = $timer->format($this->timer_format);
 
-		$prep = $this->db->prepare("
-			UPDATE crs_options SET value = :value WHERE name = 'timer'
-		");
+		$prep = $this->db->prepare("UPDATE crs_options SET value = :value WHERE name = 'timer'");
 
 		$prep->bindParam(':value', $new_timer);
 
 		$prep->execute();
 
-        return $new_timer;
+		return $new_timer;
 	}
 
 	public function createGame($target, $players) {
@@ -93,7 +85,7 @@ class CrsAdminModel extends CrsModel {
 			$prep->execute();
 		}
 
-        return $id_game;
+		return $id_game;
 	}
 
 }

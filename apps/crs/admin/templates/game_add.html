@@ -2,43 +2,43 @@
 	<form action="/admin/crs/game_add" method="post" class="form-horizontal">
 		<h1>{lang Add a game}</h1>
 
-        <fieldset>
+		<fieldset>
 			<legend>{lang General}</legend>
 
-    		<div class="form-group">
-    			<label for="side" class="col-sm-2 control-label">{lang Enemy's side} <span class="required">*</span></label>
-    			<div class="col-sm-10 col-lg-5">
-    				<select name="side" id="side" class="form-control">
-    				    <option value="dire">{lang Dire}</option>
-    				    <option value="radiant">{lang Radiant}</option>
-    				</select>
-    			</div>
-    		</div>
+			<div class="form-group">
+				<label for="side" class="col-sm-2 control-label">{lang Enemy's side} <span class="required">*</span></label>
+				<div class="col-sm-10 col-lg-5">
+					<select name="side" id="side" class="form-control">
+						<option value="dire">{lang Dire}</option>
+						<option value="radiant">{lang Radiant}</option>
+					</select>
+				</div>
+			</div>
 
-            <div class="form-group">
-    			<label for="target" class="col-sm-2 control-label">{lang Target} <span class="required">*</span></label>
-    			<div class="col-sm-10 col-lg-5">
-    				<select name="target" id="target" class="form-control">
-    				    <option value="1">1</option>
-    				    <option value="2">2</option>
-    				    <option value="3">3</option>
-    				    <option value="4">4</option>
-    				    <option value="5">5</option>
-    				</select>
-    			</div>
-    		</div>
-        </fieldset>
+			<div class="form-group">
+				<label for="target" class="col-sm-2 control-label">{lang Target} <span class="required">*</span></label>
+				<div class="col-sm-10 col-lg-5">
+					<select name="target" id="target" class="form-control">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+			</div>
+		</fieldset>
 
-        <fieldset>
-            <legend>{lang Players}</legend>
+		<fieldset>
+			<legend>{lang Players}</legend>
 
 			{for $i in array(1,2,3,4,5)}
-    		<div class="form-group">
-    			<label for="player{$i}name" class="col-sm-2 control-label">{lang Player %s name|{$i}} <span class="required">*</span></label>
-    			<div class="col-sm-10 col-lg-5">
-    				<input id="player{$i}name" class="form-control lang" type="text" name="players[{$i}][name]" />
-    			</div>
-    		</div>
+			<div class="form-group">
+				<label for="player{$i}name" class="col-sm-2 control-label">{lang Player %s name|{$i}} <span class="required">*</span></label>
+				<div class="col-sm-10 col-lg-5">
+					<input id="player{$i}name" class="form-control lang" type="text" name="players[{$i}][name]" />
+				</div>
+			</div>
 
 			<div class="form-group">
 				<label for="player{$i}hero" class="col-sm-2 control-label">{lang Player %s hero|{$i}} <span class="required">*</span></label>
@@ -52,7 +52,7 @@
 			</div>
 			<hr>
 			{/for}
-        </fieldset>
+		</fieldset>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">

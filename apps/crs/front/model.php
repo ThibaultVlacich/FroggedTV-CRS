@@ -36,7 +36,7 @@ class CrsModel {
 		return $prep->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-    public function getGames() {
+	public function getGames() {
 		$prep = $this->db->prepare("SELECT id FROM crs_games ORDER BY created_date DESC");
 
 		$prep->execute();
@@ -53,16 +53,14 @@ class CrsModel {
 	}
 
 	public function getGame($id_game) {
-		$prep = $this->db->prepare("
-			SELECT target, created_date FROM crs_games WHERE id = :id_game
-		");
+		$prep = $this->db->prepare("SELECT target, created_date FROM crs_games WHERE id = :id_game");
 
 		$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
 		$prep->execute();
 
-        if (!($fetch = $prep->fetch())) {
-            return false;
-        }
+		if (!($fetch = $prep->fetch())) {
+			return false;
+		}
 
 		list($target, $create_date) = $fetch;
 
@@ -88,17 +86,15 @@ class CrsModel {
 			'id'           => $id_game,
 			'target'       => $target,
 			'players'      => $players,
-            'created_date' => new WDate($create_date)
+			'created_date' => new WDate($create_date)
 		);
 	}
 
     /**
      * Select global options
      */
-    public function getOptions() {
-		$options_prep = $this->db->prepare('
-			SELECT name, value FROM crs_options
-		');
+	public function getOptions() {
+		$options_prep = $this->db->prepare('SELECT name, value FROM crs_options');
 
 		$options_prep->execute();
 
@@ -108,8 +104,8 @@ class CrsModel {
 			$options[$option['name']] = $option['value'];
 		}
 
-        return $options;
-    }
+		return $options;
+	}
 
 	public function getJSON() {
 		/**
