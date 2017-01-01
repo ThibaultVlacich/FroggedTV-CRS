@@ -54,11 +54,13 @@ require(['jquery'], function ($) {
             var players = result.players;
 
             $.each(players, function (index, player) {
-                var $player = $('<li>').addClass('player-' + (index + 1)).text(player.name + ' : ' + player.kills);
+                var $player = $('<li>').addClass('player-' + (index + 1));
 
-                if ('hero' in player && player.hero != false) {
-                    $player.prepend($('<i>').addClass('miniheroes-sprite miniheroes-sprite-'+player.hero.icon));
+                if ('hero' in player && player.hero !== false) {
+                    $player.append($('<i>').addClass('miniheroes-sprite miniheroes-sprite-'+player.hero.icon));
                 }
+
+                $player.append($('<span>').text(player.name + ' : ' + player.kills));
 
                 $players_list.append($player);
             });

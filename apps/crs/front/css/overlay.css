@@ -2,6 +2,7 @@
 	width: 1920px;
 	height: 1080px;
 	position: relative;
+	/*background: url(http://i.imgur.com/7UItjQX.jpg) no-repeat;*/
 }
 
 .wity-app-crs.wity-app-crs-overlay img.logo-ftv {
@@ -70,13 +71,20 @@
 .wity-app-crs.wity-app-crs-overlay ul.players-list li {
 	color: white;
 	font-size: 25px;
-	text-align: right;
 	text-shadow: black 0px 0px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-bottom: 2px;
+}
+
+.wity-app-crs.wity-app-crs-overlay ul.players-list li .miniheroes-sprite, .wity-app-crs.wity-app-crs-overlay ul.players-list li span {
+	display: inline-flex;
 }
 
 .wity-app-crs.wity-app-crs-overlay div.safari-timer {
 	position: absolute;
-	bottom: 510px;
+	bottom: 500px;
 	right: 10px;
 	color: white;
 	font-size: 25px;
