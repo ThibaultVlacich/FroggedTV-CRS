@@ -53,6 +53,10 @@ require(['jquery'], function ($) {
         if ('players' in result) {
             var players = result.players;
 
+            players.sort(function (a, b) {
+                return a.kills < b.kills;
+            });
+
             $.each(players, function (index, player) {
                 var $player = $('<li>').addClass('player-' + (index + 1));
 
