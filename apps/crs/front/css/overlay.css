@@ -82,6 +82,10 @@
 	display: inline-flex;
 }
 
+.wity-app-crs.wity-app-crs-overlay ul.players-list li .miniheroes-sprite {
+	margin-right: 5px;
+}
+
 .wity-app-crs.wity-app-crs-overlay div.safari-timer {
 	position: absolute;
 	bottom: 500px;
