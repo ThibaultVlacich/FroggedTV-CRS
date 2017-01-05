@@ -104,14 +104,14 @@
 }
 
 .wity-app-crs.wity-app-crs-overlay ul.links {
-	width: 202px;
+	width: 262px;
 	height: 40px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	position: absolute;
 	top: 980px;
-	right: 60px;
+	right: 0px;
 	background-color: #29333f;
 	display: table;
 }
@@ -130,6 +130,7 @@
 .wity-app-crs.wity-app-crs-overlay ul.links > li > img {
 	vertical-align: middle;
 	margin-right: 5px;
+	max-height: 30px;
 }
 
 .wity-app-crs.wity-app-crs-overlay ul.links > li > span {
