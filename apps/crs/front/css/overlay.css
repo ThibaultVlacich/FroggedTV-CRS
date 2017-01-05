@@ -24,10 +24,12 @@
 	width: 62px;
 	height: 40px;
 	float: left;
+	text-align: center;
 }
 
 .wity-app-crs.wity-app-crs-overlay ul.heroes-list li img {
 	opacity: 0;
+	max-height: 40px;
 }
 
 .wity-app-crs.wity-app-crs-overlay ul.heroes-list li.transition img {
