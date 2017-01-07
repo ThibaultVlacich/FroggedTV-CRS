@@ -13,7 +13,7 @@ require_once SYS_DIR.'WCore'.DS.'WView.php';
  *
  * @package System\WCore
  * @author Johan Dufau <johan.dufau@creatiwity.net>
- * @version 0.6.0-03-09-2016
+ * @version 0.6.1-23-11-2016
  */
 class WMain {
 	/**
@@ -180,7 +180,7 @@ class WMain {
 		$_SESSION['upload_dir'] = WRoute::getDir().'upload';
 
 		// Set session lang
-		if (empty($_SESSION['current_lang'])) {
+		if (empty($_SESSION['current_lang_code'])) {
 			$lang = WLang::getDefaultLang();
 
 			if (!empty($lang)) {

@@ -10,7 +10,7 @@ defined('WITYCMS_VERSION') or die('Access denied');
  *
  * @package Apps\User\Admin
  * @author Johan Dufau <johan.dufau@creatiwity.net>
- * @version 0.6.0-03-09-2016
+ * @version 0.6.1-23-11-2016
  */
 class UserAdminController extends WController {
 	/**
@@ -366,7 +366,12 @@ class UserAdminController extends WController {
 
 		if ($db_data !== false) {
 			if (WRequest::get('confirm', null, 'POST') === '1') {
-				$this->model->deleteUser($user_id);
+				$config = $this->model->getConfig();
+				if ($config['keep_users']) {
+					$this->model->updateUser($user_id, array('valid' => 0));
+				} else {
+					$this->model->deleteUser($user_id);
+				}
 
 				$this->setHeader('Location', WRoute::getDir().'admin/user');
 				WNote::success('user_deleted', WLang::get('The user was successfully deleted.'));
