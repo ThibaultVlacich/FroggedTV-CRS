@@ -109,10 +109,16 @@ class CrsModel {
 
 	public function getJSON() {
 		/**
+		 * Get options
+		 */
+		$options = $this->getOptions();
+
+		/**
 		 * Select the latest game in Database
 		 */
-		$prep = $this->db->prepare('SELECT id, target FROM crs_games ORDER BY created_date DESC LIMIT 1');
+		$prep = $this->db->prepare('SELECT id, target FROM crs_games WHERE id = :id_current_game');
 
+		$prep->bindParam(':id_current_game', $options['current_game'], PDO::PARAM_INT);
 		$prep->execute();
 
 		list($id_game, $target) = $prep->fetch();
@@ -142,7 +148,7 @@ class CrsModel {
 			'id_game' => $id_game,
 			'target'  => $target,
 			'players' => $players,
-			'options' => $this->getOptions()
+			'options' => $options
 		);
 	}
 }
