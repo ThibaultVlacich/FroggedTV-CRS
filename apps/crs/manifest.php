@@ -10,6 +10,7 @@
 	<date>03-09-2016</date>
 
 	<action default="default">overlay</action>
+	<action>pick</action>
 
 	<!-- Admin actions -->
 	<admin>

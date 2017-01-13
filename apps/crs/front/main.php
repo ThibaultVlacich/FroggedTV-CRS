@@ -18,6 +18,10 @@ class CrsController extends WController {
 		return $this->model->getJSON();
 	}
 
+	protected function pick() {
+		return $this->model->getJSON();
+	}
+
 }
 
 ?>
