@@ -54,7 +54,7 @@ require(['jquery'], function ($) {
             var players = result.players;
 
             players.sort(function (a, b) {
-                return a.kills < b.kills;
+                return b.kills - a.kills;
             });
 
             $.each(players, function (index, player) {
