@@ -88,6 +88,21 @@ class CrsAdminModel extends CrsModel {
 		return $id_game;
 	}
 
+	public function updateGame($id_game, $target) {
+		$prep = $this->db->prepare("
+			UPDATE crs_games
+			SET target = :target
+			WHERE id = :id_game
+		");
+
+		$prep->bindParam(':id_game', $id_game, PDO::PARAM_INT);
+		$prep->bindParam(':target', $target, PDO::PARAM_INT);
+
+		$prep->execute();
+
+		return $id_game;
+	}
+
 }
 
 ?>

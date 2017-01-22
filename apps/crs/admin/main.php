@@ -26,6 +26,34 @@ class CrsAdminController extends WController {
 			return WNote::error('game_not_found', WLang::get('Game not found'));
 		}
 
+		if (WRequest::getMethod() == 'POST') {
+			$data = WRequest::getAssoc(array('side', 'target'), 'POST');
+
+			if (!in_array(null, $data)) {
+				switch ($data['side']) {
+					case 'dire':
+					$target = $data['target'] + 5;
+					break;
+
+					case 'radiant':
+					$target = $data['target'];
+					break;
+				}
+
+				$this->model->updateGame($id_game, $target);
+
+				$this->setHeader('Location', WRoute::getDir().'admin/crs/game/'.$id_game);
+				return WNote::success('game_created', WLang::get('The game has been updated successfully.'));
+			}
+		}
+
+		if ($game['target'] > 5) {
+			$game['side'] = 'dire';
+			$game['target'] -= 5;
+		} else {
+			$game['side'] = 'radiant';
+		}
+
 		return array(
 			'game'    => $game,
 			'options' => $this->model->getOptions()
@@ -41,6 +69,7 @@ class CrsAdminController extends WController {
 					case 'dire':
 					$target = $data['target'] + 5;
 					break;
+
 					case 'radiant':
 					$target = $data['target'];
 					break;

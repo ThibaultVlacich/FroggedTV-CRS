@@ -1,6 +1,39 @@
 <div class="wity-app wity-app-crs wity-action-game">
-	<form action="/admin/crs/game" method="post" class="form-horizontal">
+	<form action="/admin/crs/game/{$id}" method="post" class="form-horizontal">
 		<h1>{lang Manage a game}</h1>
+
+		<fieldset>
+			<legend>{lang General}</legend>
+
+			<div class="form-group">
+				<label for="side" class="col-sm-2 control-label">{lang Enemy's side} <span class="required">*</span></label>
+				<div class="col-sm-10 col-lg-5">
+					<select name="side" id="side" class="form-control">
+						<option value="dire"{if {$side} == 'dire'} selected="selected"{/if}>{lang Dire}</option>
+						<option value="radiant"{if {$side} == 'radiant'} selected="selected"{/if}>{lang Radiant}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="target" class="col-sm-2 control-label">{lang Target} <span class="required">*</span></label>
+				<div class="col-sm-10 col-lg-5">
+					<select name="target" id="target" class="form-control">
+						<option value="1"{if {$target} == 1} selected="selected"{/if}>1</option>
+						<option value="2"{if {$target} == 2} selected="selected"{/if}>2</option>
+						<option value="3"{if {$target} == 3} selected="selected"{/if}>3</option>
+						<option value="4"{if {$target} == 4} selected="selected"{/if}>4</option>
+						<option value="5"{if {$target} == 5} selected="selected"{/if}>5</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input class="btn btn-primary" type="submit" value="{lang Update}" />
+				</div>
+			</div>
+		</fieldset>
 
 		<fieldset>
 			<legend>{lang Players}</legend>
