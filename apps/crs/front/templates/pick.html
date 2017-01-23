@@ -1,8 +1,10 @@
 <div class="wity-app-crs wity-app-crs-pick">
-    {for $player in $players}
-    <div class="card">
-        <video loop autoplay alt="" src="/apps/crs/front/video/portrait.mp4" data-portrait-video="{$player.hero.video}" data-is-showed="false"></video>
-        <h2>{$player.name}</h2>
-    </div>
-    {/for}
+    <ul class="cards">
+        {for $player in $players}
+        <li class="card">
+            <video loop autoplay alt="" src="/apps/crs/front/video/portrait.mp4" data-portrait-video="{$player.hero.video}" data-is-showed="false"></video>
+            <h2>{$player.name}</h2>
+        </li>
+        {/for}
+    </ul>
 </div>

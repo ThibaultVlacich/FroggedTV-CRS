@@ -1,8 +1,31 @@
+.wity-app-crs.wity-app-crs-pick {
+  width: 1190px;
+  height: 670px;
+  background: url('../images/pick-background.png');
+  background-size: cover;
+}
+
+.wity-app-crs.wity-app-crs-pick ul.cards {
+    margin: 0;
+    padding: 225px 30px;
+    padding-bottom: 0;
+    list-style: none;
+}
+
 .wity-app-crs.wity-app-crs-pick .card {
     float: left;
     width: 176px;
     height: 256px;
+    margin: 0 30px;
     position: relative;
+}
+
+.wity-app-crs.wity-app-crs-pick .card:first-child {
+    margin-left: 0;
+}
+
+.wity-app-crs.wity-app-crs-pick .card:last-child {
+    margin-right: 0;
 }
 
 .wity-app-crs.wity-app-crs-pick .card video {
