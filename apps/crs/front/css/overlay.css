@@ -2,14 +2,7 @@
 	width: 1920px;
 	height: 1080px;
 	position: relative;
-	/*background: url(http://i.imgur.com/6mVETtu.jpg) no-repeat;*/
-}
-
-.wity-app-crs.wity-app-crs-overlay img.logo-crs {		
-	display: block;
-	position: absolute;
-	top: 10px;
-	right: 10px;
+	background: url(../../../../themes/chroma/img/overlay.png) no-repeat;
 }
 
 .wity-app-crs.wity-app-crs-overlay img.logo-ftv {
